@@ -54,7 +54,7 @@ console.log(password)
         const validPassword = bcryptjs.compareSync(password, validUser.password)
 
         if (!validPassword) {
-            return next(errorHandler(400, "Wrong Credentials"))
+            return next(errorHandler(400, "Incorrect Password"))
         }
 
         const token = jwt.sign(
