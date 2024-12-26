@@ -50,7 +50,6 @@ const signin = async (req, res, next) => {
         if (!validUser) {
             return next(errorHandler(404, "User not found"))
         }
-console.log(password)
         const validPassword = bcryptjs.compareSync(password, validUser.password)
 
         if (!validPassword) {
@@ -64,7 +63,7 @@ console.log(password)
         const { password: pass, ...rest } = validUser._doc
           
           
-        res.status(200).cookie("access_token", token, { httpOnly: true }).json(rest)
+        res.status(200).cookie("access_token", token, { httpOnly: true,sameSite: 'none' }).json(rest)
     } catch (error) {
         next(error)
     }
